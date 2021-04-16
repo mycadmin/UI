@@ -1,0 +1,17 @@
+D:\01.Project\02.UI\MYC.UI.Account\bin\Debug\MYC.UI.Account.dll
+D:\01.Project\02.UI\MYC.UI.Account\bin\Debug\MYC.UI.Account.pdb
+D:\01.Project\02.UI\MYC.UI.Account\bin\Debug\MYC.Control.dll
+D:\01.Project\02.UI\MYC.UI.Account\bin\Debug\MYC.Sender.dll
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.AccountInsert.resources
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.Popup.AccountInsertPopup.resources
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.csproj.GenerateResource.cache
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.csproj.CoreCompileInputs.cache
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.csproj.CopyComplete
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.dll
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.pdb
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.AccountManager.resources
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.Popup.AccountBankInsertPopup.resources
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.Popup.AccountCardInsertPopup.resources
+D:\01.Project\02.UI\MYC.UI.Account\obj\Debug\MYC.UI.Account.Popup.AccountInsertExcelImport.resources
+D:\01.Project\02.UI\MYC.UI.Account\bin\Debug\MYC.UI.DTO.dll
+D:\01.Project\02.UI\MYC.UI.Account\bin\Debug\MYC.UI.DTO.pdb

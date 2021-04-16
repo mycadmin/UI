@@ -1,0 +1,15 @@
+D:\01.Project\02.UI\MYC.UI.Project\bin\Debug\MYC.UI.Project.dll
+D:\01.Project\02.UI\MYC.UI.Project\bin\Debug\MYC.UI.Project.pdb
+D:\01.Project\02.UI\MYC.UI.Project\bin\Debug\MYC.Control.dll
+D:\01.Project\02.UI\MYC.UI.Project\bin\Debug\MYC.Sender.dll
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.ProjectHistory.resources
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.ProjectManager.resources
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.csproj.GenerateResource.cache
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.csproj.CoreCompileInputs.cache
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.csproj.CopyComplete
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.dll
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.pdb
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.Popup.CustomerOrderInsertPopup.resources
+D:\01.Project\02.UI\MYC.UI.Project\obj\Debug\MYC.UI.Project.csprojAssemblyReference.cache
+D:\01.Project\02.UI\MYC.UI.Project\bin\Debug\MYC.UI.DTO.dll
+D:\01.Project\02.UI\MYC.UI.Project\bin\Debug\MYC.UI.DTO.pdb
