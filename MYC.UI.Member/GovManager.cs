@@ -133,7 +133,7 @@ namespace MYC.UI.Member
                     _dtUser = ds.Tables["ds_user"];
                     gd_Member.DataSource = _dtUser;
 
-                    if (gd_Member.LabelDisplayed)
+                    if (!gd_Member.LabelDisplayed)
                     {
                         gd_Member.SetGridColumn(ds.Tables["ds_user_column"]);
                         gd_Member.SelectionMode = DataGridViewSelectionMode.CellSelect;

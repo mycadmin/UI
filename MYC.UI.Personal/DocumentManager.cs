@@ -77,7 +77,7 @@ namespace MYC.UI.Personal
 
                     DataGridViewButtonColumn bt = new DataGridViewButtonColumn()
                     {
-                        Text = "문서신청",
+                        Text = "문서등록",
                         HeaderText = "관리",
                         Name = "insert",
                         UseColumnTextForButtonValue = true
@@ -135,7 +135,7 @@ namespace MYC.UI.Personal
                 DataGridViewButtonColumn bt2 = new DataGridViewButtonColumn()
                 {
                     Text = "문서 출력",
-                    HeaderText = "관리",
+                    HeaderText = "출력",
                     Name = "Excel",
                     UseColumnTextForButtonValue = true
                 };
@@ -149,55 +149,17 @@ namespace MYC.UI.Personal
             if (e.RowIndex > -1)
             {
                 DataGridViewRow row = view.Rows[e.RowIndex];
-
-                if ("문서신청".Equals(row.Cells[e.ColumnIndex].Value))
+                /*
+                if ("문서등록".Equals(row.Cells[e.ColumnIndex].Value))
                 {
-                    switch (row.Cells["DOC_TYP_CD"].Value)
+                    var frm = new Popup.DocInsertPopup()
                     {
-                        case "01":
-                            var frm01 = new Popup.DocInsertPopup_01()
-                            {
-                                DOC_TYP_CD = row.Cells["DOC_TYP_CD"].Value.ToString()
-                            };
+                        DOC_TYP_CD = row.Cells["DOC_TYP_CD"].Value.ToString()
+                    };
 
-                            frm01.ShowDialog();
-                            break;
-                        case "11":
-                        case "12":
-                        case "13":
-                        case "14":
-                        case "15":
-                        case "16":
-                        case "17":
-                        case "18":
-                        case "19":
-                            var frm11 = new Popup.DocInsertPopup_11()
-                            {
-                                DOC_TYP_CD = row.Cells["DOC_TYP_CD"].Value.ToString()
-                            };
-
-                            frm11.ShowDialog();
-                            break;
-                        case "21":
-                            var frm21 = new Popup.DocInsertPopup_21()
-                            {
-                                DOC_TYP_CD = row.Cells["DOC_TYP_CD"].Value.ToString()
-                            };
-
-                            frm21.ShowDialog();
-                            break;
-                        case "22":
-                            var frm22 = new Popup.DocInsertPopup_22()
-                            {
-                                DOC_TYP_CD = row.Cells["DOC_TYP_CD"].Value.ToString()
-                            };
-
-                            frm22.ShowDialog();
-                            break;
-                        default:
-                            break;
-                    }
+                    frm.ShowDialog();
                 }
+                */
             }
         }
 

@@ -12,6 +12,8 @@ namespace MYC.UI.Admin
         #region Field        
         protected DataTable _dtGroup = new DataTable();
         protected DataTable _dtItem = new DataTable();
+
+        protected bool btnbool = false;
         #endregion
 
         public CodeManager()
@@ -61,6 +63,8 @@ namespace MYC.UI.Admin
             SetSearchData("ITEM_ID", gd_List.SelectedCells[0].Value);
             SetServiceId("GetItemList");
 
+            DTOFactory.Action();
+
             try
             {
                 DTOFactory.Transaction(new AdminDTO());
@@ -68,7 +72,7 @@ namespace MYC.UI.Admin
                 _dtItem = ds.Tables["ds_item"];
                 gd_Item.DataSource = _dtItem;
 
-                if (!gd_Item.LabelDisplayed)
+                if (!btnbool)
                 {
                     DataGridViewButtonColumn bt = new DataGridViewButtonColumn()
                     {
@@ -78,6 +82,8 @@ namespace MYC.UI.Admin
                         UseColumnTextForButtonValue = true
                     };
                     gd_Item.Columns.AddRange(bt);
+
+                    btnbool = true;
                 }
                                 
                 gd_Item.Columns["ITEM_CD"].ReadOnly = true;
@@ -86,6 +92,8 @@ namespace MYC.UI.Admin
             {
                 ViewMessage.Error(ex.Message);
             }
+
+            DTOFactory.Complete();
         }
 
         private void ItemClick(object sender, DataGridViewCellEventArgs e)

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BusinessManager));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbSearch = new System.Windows.Forms.Label();
             this.panel = new System.Windows.Forms.Panel();
@@ -47,7 +49,7 @@
             this.cboUser = new MYC.Control.CheckComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.gd_List = new Control.MYCGrid();
+            this.gd_List = new MYC.Control.MYCGrid();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtMemo = new System.Windows.Forms.TextBox();
@@ -56,13 +58,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnDocHelp = new System.Windows.Forms.Button();
             this.btnDocumentNew = new System.Windows.Forms.Button();
-            this.gd_Document = new Control.MYCGrid();
+            this.gd_Document = new MYC.Control.MYCGrid();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.gd_schedule = new Control.MYCGrid();
+            this.gd_schedule = new MYC.Control.MYCGrid();
             this.btnScheduleAdd = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            ((System.ComponentModel.ISupportInitialize)(this._dtSearch)).BeginInit();
             this.PlMainBody.SuspendLayout();
             this.PlSearchBody.SuspendLayout();
             this.panel.SuspendLayout();
@@ -320,23 +323,27 @@
             // 
             this.gd_List.AllowUserToAddRows = false;
             this.gd_List.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gd_List.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gd_List.AllowUserToResizeRows = false;
+            this.gd_List.BackgroundColor = System.Drawing.Color.White;
+            this.gd_List.BackgroundColor2 = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gd_List.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gd_List.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gd_List.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gd_List.EnableHeadersVisualStyles = false;
             this.gd_List.Location = new System.Drawing.Point(0, 24);
             this.gd_List.MultiSelect = false;
             this.gd_List.Name = "gd_List";
             this.gd_List.ReadOnly = true;
             this.gd_List.RowHeadersVisible = false;
             this.gd_List.RowTemplate.Height = 23;
-            this.gd_List.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.gd_List.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gd_List.Size = new System.Drawing.Size(929, 276);
             this.gd_List.TabIndex = 27;
             this.gd_List.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GetItemInfo);
@@ -434,8 +441,20 @@
             // 
             this.gd_Document.AllowUserToAddRows = false;
             this.gd_Document.AllowUserToDeleteRows = false;
+            this.gd_Document.AllowUserToResizeRows = false;
+            this.gd_Document.BackgroundColor = System.Drawing.Color.White;
+            this.gd_Document.BackgroundColor2 = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gd_Document.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gd_Document.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gd_Document.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gd_Document.EnableHeadersVisualStyles = false;
             this.gd_Document.Location = new System.Drawing.Point(0, 24);
             this.gd_Document.MultiSelect = false;
             this.gd_Document.Name = "gd_Document";
@@ -473,8 +492,20 @@
             // 
             this.gd_schedule.AllowUserToAddRows = false;
             this.gd_schedule.AllowUserToDeleteRows = false;
+            this.gd_schedule.AllowUserToResizeRows = false;
+            this.gd_schedule.BackgroundColor = System.Drawing.Color.White;
+            this.gd_schedule.BackgroundColor2 = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gd_schedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gd_schedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gd_schedule.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gd_schedule.EnableHeadersVisualStyles = false;
             this.gd_schedule.Location = new System.Drawing.Point(0, 24);
             this.gd_schedule.MultiSelect = false;
             this.gd_schedule.Name = "gd_schedule";
@@ -532,6 +563,7 @@
             this.Name = "BusinessManager";
             this.Size = new System.Drawing.Size(1201, 665);
             this.Load += new System.EventHandler(this.BusinessManager_Load);
+            ((System.ComponentModel.ISupportInitialize)(this._dtSearch)).EndInit();
             this.PlMainBody.ResumeLayout(false);
             this.PlSearchBody.ResumeLayout(false);
             this.panel.ResumeLayout(false);

@@ -211,7 +211,7 @@ namespace MYC.UI.Report
             if (_dtList != null && _dtList.Rows.Count > 0)
             {
                 ClearSearchData();
-                SetSearchData("DOC_ID", gd_List.SelectedRows[0].Cells["DOC_ID"].Value);
+                SetSearchData("DOC_ID", gd_List.GetSelectString("DOC_ID"));
                 SetServiceId("GetBusinessItem");
 
                 try

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerMonitoring));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtSerId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbSearch = new System.Windows.Forms.Label();
@@ -42,7 +43,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.gd_list = new Control.MYCGrid();
+            this.gd_list = new MYC.Control.MYCGrid();
+            ((System.ComponentModel.ISupportInitialize)(this._dtSearch)).BeginInit();
             this.PlMainBody.SuspendLayout();
             this.PlSearchBody.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -235,12 +237,25 @@
             this.gd_list.AllowUserToAddRows = false;
             this.gd_list.AllowUserToDeleteRows = false;
             this.gd_list.AllowUserToResizeRows = false;
+            this.gd_list.BackgroundColor = System.Drawing.Color.White;
+            this.gd_list.BackgroundColor2 = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gd_list.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gd_list.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gd_list.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gd_list.EnableHeadersVisualStyles = false;
             this.gd_list.Location = new System.Drawing.Point(0, 36);
             this.gd_list.Name = "gd_list";
             this.gd_list.ReadOnly = true;
+            this.gd_list.RowHeadersVisible = false;
             this.gd_list.RowTemplate.Height = 23;
+            this.gd_list.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gd_list.Size = new System.Drawing.Size(824, 637);
             this.gd_list.TabIndex = 13;
             this.gd_list.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductAction);
@@ -251,6 +266,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "CustomerMonitoring";
             this.Size = new System.Drawing.Size(1066, 673);
+            ((System.ComponentModel.ISupportInitialize)(this._dtSearch)).EndInit();
             this.PlMainBody.ResumeLayout(false);
             this.PlSearchBody.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

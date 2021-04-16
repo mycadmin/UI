@@ -144,7 +144,7 @@ namespace MYC.UI.Machine
                 _dtList = ds_return.Tables["ds_equip"];
                 gd_list.DataSource = _dtList;
 
-                if (gd_list.LabelDisplayed)
+                if (!gd_list.LabelDisplayed)
                 {
                     gd_list.SetGridColumn(ds_return.Tables["ds_column"]);
                     gd_list.SelectionMode = DataGridViewSelectionMode.CellSelect;
@@ -307,6 +307,7 @@ namespace MYC.UI.Machine
 
                     var frm = new MachineHistory()
                     {
+                        ProductId = row.Cells["PRODUCT_ID"].Value.ToString(),
                         MgrCd = row.Cells["MGR_CD"].Value.ToString()
                     };
                     frm.ShowDialog();

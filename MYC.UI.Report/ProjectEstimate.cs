@@ -21,6 +21,8 @@ namespace MYC.UI.Report
         protected bool bFix = true;
         #endregion
 
+        public string Comp_CD;
+
         public ProjectEstimate()
         {
             InitializeComponent();
@@ -356,6 +358,8 @@ namespace MYC.UI.Report
 
             if (frm.DialogResult == DialogResult.OK)
             {
+                dtTo.Value = DateTime.Now;
+                cboSearchComp.SetItemChecked("");
                 Search(null, null);
 
                 gd_Group.Rows[gd_Group.Rows.Count - 1].Selected = true;
@@ -510,14 +514,14 @@ namespace MYC.UI.Report
 
                     txtCost.Text = cost.ToString();
                     txtVat.Text = vat.ToString();
-            }
+                }
                 catch (Exception ex)
-            {
-                ViewMessage.Error(ex.Message);
-            }
+                {
+                    ViewMessage.Error(ex.Message);
+                }
 
-            //금액 Update
-            ClearSearchData();
+                //금액 Update
+                ClearSearchData();
                 SetSearchData("DOC_ID", txtDocId.Text);
                 SetSearchData("COST", txtCost.Text.Replace(",", ""));
                 SetSearchData("VAT", txtVat.Text.Replace(",", ""));

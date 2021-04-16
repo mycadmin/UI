@@ -450,7 +450,7 @@ namespace MYC.UI.Member
                             try
                             {
                                 DTOFactory.Transaction(new MemberDTO());
-                                _dtUser.Rows.RemoveAt(gd_Member.SelectedRows[0].Index);
+                                _dtUser.Rows.RemoveAt(gd_Member.SelectedCells[0].RowIndex);
                             }
                             catch (Exception ex)
                             {

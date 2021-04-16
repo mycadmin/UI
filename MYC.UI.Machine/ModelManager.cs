@@ -162,7 +162,7 @@ namespace MYC.UI.Machine
                 LstDocument.DataSource = _dtDocument;
                 LstPlan.DisplayMember = "FILE_DESC";
                 LstEstimate.DisplayMember = "FILE_DESC";
-                LstDocument.DisplayMember = "FILE_DESC";
+                LstDocument.DisplayMember = "FILE_DESC";                
             }
             catch (Exception ex)
             {

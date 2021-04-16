@@ -46,6 +46,7 @@ namespace MYC.UI.Machine.Popup
 
                 dtColumn = ds_return.Tables["ds_column"];
                 gd_Eqp.DataSource = ds_return.Tables["ds_history"];
+                gd_Eqp.SetGridColumn(ds_return.Tables["ds_column"]);
                 
             }
             catch (Exception ex)

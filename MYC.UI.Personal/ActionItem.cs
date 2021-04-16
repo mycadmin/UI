@@ -3,8 +3,8 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using MYC.Control;
+using MYC.Control.Common;
 using MYC.UI.DTO;
-
 
 namespace MYC.UI.Personal
 {
@@ -23,8 +23,8 @@ namespace MYC.UI.Personal
 
             InitSpread();
             InitControls();
-            //Search(null, null);
-                        
+            Search(null, null);
+
             DTOFactory.Complete();
         }
 
