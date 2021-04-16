@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F70C7E76-338A-4F59-B9B4-1DF1A9653393}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MYC.UI.Member</RootNamespace>
+    <AssemblyName>MYC.UI.Member</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MYC.Control">
+      <HintPath>..\..\99.common\dll\MYC.Control.dll</HintPath>
+    </Reference>
+    <Reference Include="MYC.Sender">
+      <HintPath>..\..\99.common\dll\MYC.Sender.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CompanyManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CompanyManager.Designer.cs">
+      <DependentUpon>CompanyManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GovManager.Designer.cs">
+      <DependentUpon>GovManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\FrmInsertCompMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\FrmInsertCompMember.Designer.cs">
+      <DependentUpon>FrmInsertCompMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\FrmInsertVendorComp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\FrmInsertVendorComp.Designer.cs">
+      <DependentUpon>FrmInsertVendorComp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\FrmInsertGovMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\FrmInsertGovMember.Designer.cs">
+      <DependentUpon>FrmInsertGovMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\FrmInsertGovComp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\FrmInsertGovComp.Designer.cs">
+      <DependentUpon>FrmInsertGovComp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VendorManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VendorManager.Designer.cs">
+      <DependentUpon>VendorManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerManager.Designer.cs">
+      <DependentUpon>CustomerManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CompanyManager.resx">
+      <DependentUpon>CompanyManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovManager.resx">
+      <DependentUpon>GovManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\FrmInsertCompMember.resx">
+      <DependentUpon>FrmInsertCompMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\FrmInsertVendorComp.resx">
+      <DependentUpon>FrmInsertVendorComp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\FrmInsertGovMember.resx">
+      <DependentUpon>FrmInsertGovMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\FrmInsertGovComp.resx">
+      <DependentUpon>FrmInsertGovComp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendorManager.resx">
+      <DependentUpon>VendorManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerManager.resx">
+      <DependentUpon>CustomerManager.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MYC.UI.DTO\MYC.UI.DTO.csproj">
+      <Project>{0b7a7740-c799-4575-b783-f8ab4566e647}</Project>
+      <Name>MYC.UI.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY $(TargetPath) D:\01.Project\client\dll\$(TargetFileName)
+COPY $(TargetPath) \\server\Server\source\link\client\dll\$(TargetFileName)</PostBuildEvent>
+  </PropertyGroup>
+</Project>

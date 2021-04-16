@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37728A62-A9A4-4DBF-8B69-BD0A6CDBD621}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MYC.UI.Machine</RootNamespace>
+    <AssemblyName>MYC.UI.Machine</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\client\app\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MYC.Control, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\99.common\dll\MYC.Control.dll</HintPath>
+    </Reference>
+    <Reference Include="MYC.Sender">
+      <HintPath>..\..\99.common\dll\MYC.Sender.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomerEquipManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerEquipManager.Designer.cs">
+      <DependentUpon>CustomerEquipManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerModelManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerModelManager.Designer.cs">
+      <DependentUpon>CustomerModelManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerMonitoring.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerMonitoring.Designer.cs">
+      <DependentUpon>CustomerMonitoring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\CustomerOrderInsertPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\CustomerOrderInsertPopup.Designer.cs">
+      <DependentUpon>CustomerOrderInsertPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\ProductorderPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\ProductorderPopup.designer.cs">
+      <DependentUpon>ProductorderPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductMonitoring.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductMonitoring.Designer.cs">
+      <DependentUpon>ProductMonitoring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelManager.Designer.cs">
+      <DependentUpon>ModelManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\DocumentConfirmPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\DocumentConfirmPopup.Designer.cs">
+      <DependentUpon>DocumentConfirmPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\EquipOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\EquipOrder.Designer.cs">
+      <DependentUpon>EquipOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\ImagePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\ImagePopup.Designer.cs">
+      <DependentUpon>ImagePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\MachineHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\MachineHistory.Designer.cs">
+      <DependentUpon>MachineHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCodeManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductCodeManager.Designer.cs">
+      <DependentUpon>ProductCodeManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectEstimate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectEstimate.Designer.cs">
+      <DependentUpon>ProjectEstimate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductOrder.Designer.cs">
+      <DependentUpon>ProductOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDeliver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductDeliver.Designer.cs">
+      <DependentUpon>ProductDeliver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCarry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductCarry.Designer.cs">
+      <DependentUpon>ProductCarry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomerEquipManager.resx">
+      <DependentUpon>CustomerEquipManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerModelManager.resx">
+      <DependentUpon>CustomerModelManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerMonitoring.resx">
+      <DependentUpon>CustomerMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\CustomerOrderInsertPopup.resx">
+      <DependentUpon>CustomerOrderInsertPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\ProductorderPopup.resx">
+      <DependentUpon>ProductorderPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductMonitoring.resx">
+      <DependentUpon>ProductMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelManager.resx">
+      <DependentUpon>ModelManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\DocumentConfirmPopup.resx">
+      <DependentUpon>DocumentConfirmPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\EquipOrder.resx">
+      <DependentUpon>EquipOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\ImagePopup.resx">
+      <DependentUpon>ImagePopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\MachineHistory.resx">
+      <DependentUpon>MachineHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductCodeManager.resx">
+      <DependentUpon>ProductCodeManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectEstimate.resx">
+      <DependentUpon>ProjectEstimate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductOrder.resx">
+      <DependentUpon>ProductOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductDeliver.resx">
+      <DependentUpon>ProductDeliver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductCarry.resx">
+      <DependentUpon>ProductCarry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Docs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ci_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MYC.UI.DTO\MYC.UI.DTO.csproj">
+      <Project>{0b7a7740-c799-4575-b783-f8ab4566e647}</Project>
+      <Name>MYC.UI.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY $(TargetPath) D:\01.Project\client\dll\$(TargetFileName)
+COPY $(TargetPath) \\server\Server\source\link\client\dll\$(TargetFileName)</PostBuildEvent>
+  </PropertyGroup>
+</Project>

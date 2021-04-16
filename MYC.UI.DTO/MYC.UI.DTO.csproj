@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="COPY $(TargetPath) D:\01.Project\client\dll\$(TargetFileName)&#xD;&#xA;COPY $(TargetPath) \\server\Server\source\link\client\app\$(TargetFileName)&#xD;&#xA;COPY $(TargetPath) \\server\Server\source\link\client\dll\$(TargetFileName)" />
+  </Target>
+
+</Project>

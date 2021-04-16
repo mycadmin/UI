@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{74C75188-C45D-4DD6-8784-88E6DF79B712}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MYC.UI.Personal</RootNamespace>
+    <AssemblyName>MYC.UI.Personal</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MYC.Control">
+      <HintPath>..\..\99.common\dll\MYC.Control.dll</HintPath>
+    </Reference>
+    <Reference Include="MYC.Sender">
+      <HintPath>..\..\99.common\dll\MYC.Sender.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionItem.Designer.cs">
+      <DependentUpon>ActionItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Calendar.Designer.cs">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DocumentManager.Designer.cs">
+      <DependentUpon>DocumentManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\ActionItemInsertPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\ActionItemInsertPopup.Designer.cs">
+      <DependentUpon>ActionItemInsertPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\DocInsertPopup_22.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\DocInsertPopup_22.Designer.cs">
+      <DependentUpon>DocInsertPopup_22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\DocInsertPopup_21.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\DocInsertPopup_21.Designer.cs">
+      <DependentUpon>DocInsertPopup_21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\DocInsertPopup_11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\DocInsertPopup_11.Designer.cs">
+      <DependentUpon>DocInsertPopup_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\DocInsertPopup_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\DocInsertPopup_01.Designer.cs">
+      <DependentUpon>DocInsertPopup_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\FileViewPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\FileViewPopup.Designer.cs">
+      <DependentUpon>FileViewPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WeekReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WeekReport.Designer.cs">
+      <DependentUpon>WeekReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkStatus.Designer.cs">
+      <DependentUpon>WorkStatus.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ActionItem.resx">
+      <DependentUpon>ActionItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calendar.resx">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentManager.resx">
+      <DependentUpon>DocumentManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\ActionItemInsertPopup.resx">
+      <DependentUpon>ActionItemInsertPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\DocInsertPopup_22.resx">
+      <DependentUpon>DocInsertPopup_22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\DocInsertPopup_21.resx">
+      <DependentUpon>DocInsertPopup_21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\DocInsertPopup_11.resx">
+      <DependentUpon>DocInsertPopup_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\DocInsertPopup_01.resx">
+      <DependentUpon>DocInsertPopup_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\FileViewPopup.resx">
+      <DependentUpon>FileViewPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeekReport.resx">
+      <DependentUpon>WeekReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkStatus.resx">
+      <DependentUpon>WorkStatus.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MYC.UI.DTO\MYC.UI.DTO.csproj">
+      <Project>{0b7a7740-c799-4575-b783-f8ab4566e647}</Project>
+      <Name>MYC.UI.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY $(TargetPath) D:\01.Project\client\dll\$(TargetFileName)
+COPY $(TargetPath) \\server\Server\source\link\client\dll\$(TargetFileName)</PostBuildEvent>
+  </PropertyGroup>
+</Project>
