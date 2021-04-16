@@ -292,7 +292,7 @@ namespace MYC.UI.Report
                 }
             }
         }
-
+        //담당자 변경
         private void SetSchedule(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView view = (DataGridView)sender;
@@ -307,15 +307,20 @@ namespace MYC.UI.Report
                     SetSearchData("CRT_USER_ID", DTOFactory.UserId);
                     SetServiceId("SetScheduleManager");
 
+                    DTOFactory.Action();
+
                     try
                     {
                         DTOFactory.Transaction(new ReportDTO());
-                        DataSet ds_return = DTOFactory.GetDataSet();
+
+                        GetItemInfo(gd_List, null);
                     }
                     catch (Exception ex)
                     {
                         ViewMessage.Error(ex.Message);
                     }
+
+                    DTOFactory.Complete();
                 }
                 else
                 {
@@ -353,7 +358,7 @@ namespace MYC.UI.Report
                 }
             }
         }
-
+        //문서 수정
         private void DocumentControl(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView view = (DataGridView)sender;
@@ -397,6 +402,7 @@ namespace MYC.UI.Report
             }
         }
 
+        //사업추가
         private void InsertSchedule(object sender, EventArgs e)
         {
             BusinessSchedulePopup frm = new BusinessSchedulePopup()
