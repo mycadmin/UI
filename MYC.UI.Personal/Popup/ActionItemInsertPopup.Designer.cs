@@ -46,6 +46,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.cboActConfirm = new MYC.Control.CheckComboBox();
+            this.btnDownload = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.txtFileNM = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._dtSearch)).BeginInit();
             this.SuspendLayout();
             // 
@@ -171,7 +175,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(8, 173);
+            this.label3.Location = new System.Drawing.Point(8, 203);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 12);
             this.label3.TabIndex = 140;
@@ -180,7 +184,7 @@
             // 
             // txtMemo
             // 
-            this.txtMemo.Location = new System.Drawing.Point(76, 110);
+            this.txtMemo.Location = new System.Drawing.Point(76, 140);
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.Size = new System.Drawing.Size(316, 139);
@@ -189,7 +193,7 @@
             // chkMail
             // 
             this.chkMail.AutoSize = true;
-            this.chkMail.Location = new System.Drawing.Point(76, 255);
+            this.chkMail.Location = new System.Drawing.Point(76, 285);
             this.chkMail.Name = "chkMail";
             this.chkMail.Size = new System.Drawing.Size(128, 16);
             this.chkMail.TabIndex = 142;
@@ -199,7 +203,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(117, 291);
+            this.btnClose.Location = new System.Drawing.Point(117, 321);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(70, 21);
             this.btnClose.TabIndex = 143;
@@ -210,7 +214,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(219, 291);
+            this.btnSave.Location = new System.Drawing.Point(219, 321);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(70, 21);
             this.btnSave.TabIndex = 144;
@@ -245,11 +249,56 @@
             this.cboActConfirm.Text = "[SELECT]";
             this.cboActConfirm.ValueMember = "ITEM_CD";
             // 
+            // btnDownload
+            // 
+            this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDownload.Location = new System.Drawing.Point(307, 85);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(85, 21);
+            this.btnDownload.TabIndex = 147;
+            this.btnDownload.Text = "요청서 받기";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Visible = false;
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInsert.Location = new System.Drawing.Point(307, 113);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(85, 21);
+            this.btnInsert.TabIndex = 148;
+            this.btnInsert.Text = "요청서 등록";
+            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.FileInsert);
+            // 
+            // txtFileNM
+            // 
+            this.txtFileNM.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txtFileNM.Location = new System.Drawing.Point(76, 112);
+            this.txtFileNM.Name = "txtFileNM";
+            this.txtFileNM.ReadOnly = true;
+            this.txtFileNM.Size = new System.Drawing.Size(225, 21);
+            this.txtFileNM.TabIndex = 149;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.Location = new System.Drawing.Point(8, 117);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 12);
+            this.label5.TabIndex = 150;
+            this.label5.Text = "파 일 명";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ActionItemInsertPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 324);
+            this.ClientSize = new System.Drawing.Size(404, 351);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtFileNM);
+            this.Controls.Add(this.btnInsert);
+            this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.cboActConfirm);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnSave);
@@ -295,5 +344,9 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label4;
         private Control.CheckComboBox cboActConfirm;
+        private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.TextBox txtFileNM;
+        private System.Windows.Forms.Label label5;
     }
 }

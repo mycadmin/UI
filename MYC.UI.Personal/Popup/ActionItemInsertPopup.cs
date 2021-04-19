@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MYC.Control;
 using MYC.Control.Common;
+using MYC.Sender;
 using MYC.UI.DTO;
 
 namespace MYC.UI.Personal.Popup
 {
     public partial class ActionItemInsertPopup : MYCForm
     {
+        string File_NM = "";
+
         public ActionItemInsertPopup()
         {
             InitializeComponent();
@@ -64,8 +67,28 @@ namespace MYC.UI.Personal.Popup
             Close();
         }
 
+        private void FileInsert(object sender, EventArgs e)
+        {
+            OpenFileDialog frm = new OpenFileDialog();
+            
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                File_NM = frm.FileName.ToString();
+                txtFileNM.Text = File_NM;
+            }
+        }
+
         private void Confirm(object sender, EventArgs e)
         {
+            
+            string Link_CD = "";
+
+            if (!"".Equals(File_NM))
+            {
+                FileSender snd = new FileSender(Link_CD, File_NM);
+                Link_CD = snd.GetLinkCode();
+            }
+            
             ClearSearchData();
             SetSearchData("SUBJECT", txtActSubject.Text);
             SetSearchData("TYPE1", cboActType1.ValueList);
@@ -76,6 +99,7 @@ namespace MYC.UI.Personal.Popup
             SetSearchData("USER_ID", DTOFactory.UserId);
             SetSearchData("TGT_TM", dtActTarget.Value.ToString("yyyy-MM-dd"));
             SetSearchData("END_TM", "");
+            SetSearchData("LINK_CD", Link_CD);
             SetSearchData("DESC", txtMemo.Text);
 
             SetServiceId("CreateActionList");
