@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using MYC.Control;
 using MYC.Control.Common;
+using MYC.Sender;
 using MYC.UI.DTO;
 
 namespace MYC.UI.Personal
@@ -130,14 +131,23 @@ namespace MYC.UI.Personal
                 {
                     gd_List.SetGridColumn(ds.Tables["ds_column"]);
 
-                    DataGridViewButtonColumn bt = new DataGridViewButtonColumn()
+                    DataGridViewButtonColumn bt1 = new DataGridViewButtonColumn()
+                    {
+                        Text = "보기",
+                        HeaderText = "지침서",
+                        Name = "VIEW",
+                        UseColumnTextForButtonValue = true
+                    };
+                    gd_List.Columns.AddRange(bt1);
+
+                    DataGridViewButtonColumn bt2 = new DataGridViewButtonColumn()
                     {
                         Text = "검토완료",
                         HeaderText = "관리",
                         Name = "CONFIRM",
                         UseColumnTextForButtonValue = true
                     };
-                    gd_List.Columns.AddRange(bt);
+                    gd_List.Columns.AddRange(bt2);
                 }
 
                 foreach (DataGridViewRow row in gd_List.Rows)
@@ -177,7 +187,7 @@ namespace MYC.UI.Personal
         private void ActionItemConfirm(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView view = (DataGridView)sender;
-            
+
             if (e.RowIndex > -1)
             {
                 DataGridViewRow row = view.Rows[e.RowIndex];
@@ -229,6 +239,23 @@ namespace MYC.UI.Personal
                             DTOFactory.Complete();
                             ViewMessage.Error(ex.Message);
                         }
+                    }
+                }
+                else if("보기".Equals(row.Cells[e.ColumnIndex].Value.ToString()))
+                {
+                    if(!"".Equals(row.Cells["LINK"].Value.ToString()))
+                    {
+                        DTOFactory.Action();
+
+                        FileGet get = new FileGet(row.Cells["LINK"].Value.ToString());
+
+                        get.Close();
+
+                        DTOFactory.Complete();
+                    }
+                    else
+                    {
+                        ViewMessage.Error("등록된 파일이 없습니다.");
                     }
                 }
             }
@@ -368,6 +395,8 @@ namespace MYC.UI.Personal
 
         private void ActionItemSave(object sender, EventArgs e)
         {
+            DTOFactory.Action();
+
             DataGridViewRow row = gd_Item.SelectedRows[0];
 
             ClearSearchData();
@@ -384,6 +413,8 @@ namespace MYC.UI.Personal
             SetServiceId("SetActionItem");
 
             SetItemGrid();
+            Search(null, null);
+            DTOFactory.Complete();
         }
 
         private void FileProcess(object sender, EventArgs e)
