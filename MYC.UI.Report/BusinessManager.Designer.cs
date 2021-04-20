@@ -52,11 +52,13 @@
             this.gd_List = new MYC.Control.MYCGrid();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabMyMemo = new System.Windows.Forms.TabPage();
+            this.txtMyMemo = new System.Windows.Forms.TextBox();
+            this.tabMemo = new System.Windows.Forms.TabPage();
             this.txtMemo = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnDocHelp = new System.Windows.Forms.Button();
             this.btnDocumentNew = new System.Windows.Forms.Button();
             this.gd_Document = new MYC.Control.MYCGrid();
             this.label7 = new System.Windows.Forms.Label();
@@ -72,6 +74,9 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gd_List)).BeginInit();
             this.panel4.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabMyMemo.SuspendLayout();
+            this.tabMemo.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gd_Document)).BeginInit();
             this.panel2.SuspendLayout();
@@ -343,10 +348,11 @@
             this.gd_List.ReadOnly = true;
             this.gd_List.RowHeadersVisible = false;
             this.gd_List.RowTemplate.Height = 23;
-            this.gd_List.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gd_List.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gd_List.Size = new System.Drawing.Size(929, 276);
             this.gd_List.TabIndex = 27;
             this.gd_List.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GetItemInfo);
+            this.gd_List.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BusinessFix);
             // 
             // label3
             // 
@@ -361,25 +367,73 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.txtMemo);
+            this.panel4.Controls.Add(this.tabControl);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Controls.Add(this.label8);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 505);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(929, 160);
             this.panel4.TabIndex = 163;
             // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tabMyMemo);
+            this.tabControl.Controls.Add(this.tabMemo);
+            this.tabControl.Location = new System.Drawing.Point(3, 6);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(816, 147);
+            this.tabControl.TabIndex = 95;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.BtnEnableControl);
+            // 
+            // tabMyMemo
+            // 
+            this.tabMyMemo.Controls.Add(this.txtMyMemo);
+            this.tabMyMemo.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tabMyMemo.Location = new System.Drawing.Point(4, 22);
+            this.tabMyMemo.Name = "tabMyMemo";
+            this.tabMyMemo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMyMemo.Size = new System.Drawing.Size(808, 121);
+            this.tabMyMemo.TabIndex = 0;
+            this.tabMyMemo.Text = "My Memo";
+            this.tabMyMemo.UseVisualStyleBackColor = true;
+            // 
+            // txtMyMemo
+            // 
+            this.txtMyMemo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMyMemo.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtMyMemo.Location = new System.Drawing.Point(3, 3);
+            this.txtMyMemo.Multiline = true;
+            this.txtMyMemo.Name = "txtMyMemo";
+            this.txtMyMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMyMemo.Size = new System.Drawing.Size(802, 115);
+            this.txtMyMemo.TabIndex = 0;
+            // 
+            // tabMemo
+            // 
+            this.tabMemo.Controls.Add(this.txtMemo);
+            this.tabMemo.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tabMemo.Location = new System.Drawing.Point(4, 22);
+            this.tabMemo.Name = "tabMemo";
+            this.tabMemo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMemo.Size = new System.Drawing.Size(693, 121);
+            this.tabMemo.TabIndex = 1;
+            this.tabMemo.Text = "사업 Memo";
+            this.tabMemo.UseVisualStyleBackColor = true;
+            // 
             // txtMemo
             // 
-            this.txtMemo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMemo.Location = new System.Drawing.Point(12, 27);
-            this.txtMemo.MaxLength = 200;
+            this.txtMemo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMemo.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtMemo.Location = new System.Drawing.Point(3, 3);
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
-            this.txtMemo.Size = new System.Drawing.Size(807, 128);
-            this.txtMemo.TabIndex = 95;
+            this.txtMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMemo.Size = new System.Drawing.Size(687, 115);
+            this.txtMemo.TabIndex = 0;
             // 
             // btnSave
             // 
@@ -393,20 +447,8 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.MemoSave);
             // 
-            // label8
-            // 
-            this.label8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label8.Font = new System.Drawing.Font("굴림", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(0, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(929, 24);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "■ Memo";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnDocHelp);
             this.panel3.Controls.Add(this.btnDocumentNew);
             this.panel3.Controls.Add(this.gd_Document);
             this.panel3.Controls.Add(this.label7);
@@ -415,16 +457,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(498, 205);
             this.panel3.TabIndex = 165;
-            // 
-            // btnDocHelp
-            // 
-            this.btnDocHelp.Location = new System.Drawing.Point(93, 1);
-            this.btnDocHelp.Name = "btnDocHelp";
-            this.btnDocHelp.Size = new System.Drawing.Size(24, 22);
-            this.btnDocHelp.TabIndex = 98;
-            this.btnDocHelp.Text = "?";
-            this.btnDocHelp.UseVisualStyleBackColor = true;
-            this.btnDocHelp.Click += new System.EventHandler(this.DocHelp);
             // 
             // btnDocumentNew
             // 
@@ -571,7 +603,11 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gd_List)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.tabControl.ResumeLayout(false);
+            this.tabMyMemo.ResumeLayout(false);
+            this.tabMyMemo.PerformLayout();
+            this.tabMemo.ResumeLayout(false);
+            this.tabMemo.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gd_Document)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -603,9 +639,7 @@
         private System.Windows.Forms.Panel panel4;
         private Control.MYCGrid gd_List;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtMemo;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label label8;
         private Control.MYCGrid gd_Document;
         private System.Windows.Forms.Panel panel2;
         private Control.MYCGrid gd_schedule;
@@ -617,6 +651,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button btnDocumentNew;
-        private System.Windows.Forms.Button btnDocHelp;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabMyMemo;
+        private System.Windows.Forms.TabPage tabMemo;
+        private System.Windows.Forms.TextBox txtMyMemo;
+        private System.Windows.Forms.TextBox txtMemo;
     }
 }

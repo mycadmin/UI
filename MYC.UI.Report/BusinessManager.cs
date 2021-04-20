@@ -16,6 +16,12 @@ namespace MYC.UI.Report
         protected DataTable _dtList = new DataTable();
 
         protected DataTable _dtUser = new DataTable();
+
+        protected DataTable _dtMemo = new DataTable();
+
+        protected bool BF = false;
+        protected bool SF= false;
+        protected bool btnBool = false;
         #endregion
 
         #region Init
@@ -29,10 +35,32 @@ namespace MYC.UI.Report
             DTOFactory.Action();
 
             InitSpread();
-            InitDataTable();
             InitControls();
+            MemoLoad();
 
             DTOFactory.Complete();
+        }
+
+        private void MemoLoad()
+        {
+            ClearSearchData();
+            SetSearchData("USER_ID_LST", DTOFactory.UserId);
+            SetServiceId("GetPgmMemo");
+
+            try
+            {
+                DTOFactory.Transaction(new ReportDTO());
+                DataTable dt = DTOFactory.GetDataTable();
+
+                _dtMemo = dt;
+
+                if (dt.Rows.Count > 0)
+                    txtMyMemo.Text = dt.Rows[0]["PGM_DESC"].ToString();
+            }
+            catch (Exception ex)
+            {
+                ViewMessage.Error(ex.Message);
+            }
         }
 
         private void InitSpread()
@@ -91,12 +119,10 @@ namespace MYC.UI.Report
             gd_Document.Columns.Add(btn1);
         }
 
-        private void InitDataTable()
-        {
-        }
-
         private void InitControls()
         {
+            DTOFactory.Action();
+
             dtFrom.Value = DateTime.Now.AddMonths(-3);
             dtTo.Value = DateTime.Now;
 
@@ -124,23 +150,11 @@ namespace MYC.UI.Report
             txtMemo.Text = "";
             btnScheduleAdd.Enabled = false;
             btnDocumentNew.Enabled = false;
-            btnSave.Enabled = false;
+            btnSave.Enabled = true;
+
+            DTOFactory.Complete();
         }
         #endregion
-
-        private void GetVisitHistory(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AddRow(object sender, EventArgs e)
-        {
-            DataRow row = _dtList.NewRow();
-
-            row["CST_COMP_CD"] = cboUser.ValueList;
-
-            _dtList.Rows.Add(row);
-        }
 
         private void GetBusinessHistory(object sender, EventArgs e)
         {
@@ -156,14 +170,22 @@ namespace MYC.UI.Report
             try
             {
                 DTOFactory.Transaction(new ReportDTO());
-                DataSet ds_return = DTOFactory.GetDataSet();
+                DataSet ds = DTOFactory.GetDataSet();
 
-                _dtList = ds_return.Tables["ds_list"];
+                _dtList = ds.Tables["ds_list"];
                 gd_List.DataSource = null;
                 gd_List.Columns.Clear();
                 gd_List.DataSource = _dtList;
+                gd_List.SetGridColumn(ds.Tables["ds_column"]);
 
-                gd_List.SetGridColumn(ds_return.Tables["ds_column"]);
+                DataGridViewButtonColumn btn = new DataGridViewButtonColumn()
+                {
+                    HeaderText = "관리",
+                    Name = "Fix",
+                    Text = "사업 수정",
+                    UseColumnTextForButtonValue = true
+                };
+                gd_List.Columns.AddRange(btn);
 
                 gd_schedule.DataSource = null;
                 gd_Document.DataSource = null;
@@ -172,7 +194,9 @@ namespace MYC.UI.Report
                 txtMemo.Text = "";
                 btnScheduleAdd.Enabled = false;
                 btnDocumentNew.Enabled = false;
-                btnSave.Enabled = false;
+                btnBool = false;
+                BtnEnableControl(null, null);
+
             }
             catch (Exception ex)
             {
@@ -187,6 +211,43 @@ namespace MYC.UI.Report
             if (frm.ShowDialog() == DialogResult.OK)
             {
 
+            }
+        }
+
+        private void BusinessFix(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView view = (DataGridView)sender;
+
+            if ("Fix".Equals(view.Columns[e.ColumnIndex].Name))
+            {
+                if (e.RowIndex > -1)
+                {
+                    DataGridViewRow row = view.Rows[e.RowIndex];
+
+                    BF = true;
+                    DateTime AcceptTime = "".Equals(row.Cells["ACCEPT_DT"].Value.ToString()) 
+                        ? DateTime.Now : DateTime.Parse(row.Cells["ACCEPT_DT"].Value.ToString());
+
+                    var frm = new BusinessSheetPopup()
+                    {
+                        DOC_ID = row.Cells["DOC_ID"].Value.ToString(),
+                        SUBJECT = row.Cells["SUBJECT"].Value.ToString(),
+                        COMP_CD = row.Cells["COMP_CD"].Value.ToString(),
+                        COMP_USER_ID = row.Cells["COMP_USER_ID"].Value.ToString(),
+                        ACCEPT_DT = AcceptTime,
+                        USER_ID = row.Cells["USER_ID"].Value.ToString(),
+                        COST = row.Cells["COST"].Value.ToString(),
+                        PROJECT_ID = row.Cells["PRO_ID"].Value.ToString(),
+
+                        BF = BF
+                    };
+
+                    if(frm.ShowDialog() == DialogResult.OK)
+                    {
+                        GetBusinessHistory(gd_List, null);
+                        BF = false;
+                    }
+                }
             }
         }
 
@@ -228,31 +289,41 @@ namespace MYC.UI.Report
                     gd_schedule.ReadOnly = false;
                     gd_schedule.Columns["SCH_TM"].ReadOnly = true;
                     gd_schedule.Columns["SCH_DESC"].ReadOnly = true;
+                    gd_schedule.Columns["SCH_DESC"].Width = 100;
 
-                    DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn()
-                    {
-                        ValueType = typeof(DataTable),
-                        DataSource = _dtUser,
-                        DisplayMember = "ITEM_NM",
-                        ValueMember = "ITEM_CD",
-                        HeaderText = "담당자",
-                        DataPropertyName = "USER_ID",
-                        Name = "USER_ID",
-                        Width = 160
-                    };
-                    int index = gd_schedule.Columns["USER_ID"].DisplayIndex;
-                    gd_schedule.Columns.Remove(gd_schedule.Columns["USER_ID"]);
-                    gd_schedule.Columns.AddRange(cbo);
-                    cbo.DisplayIndex = index;
+                    //DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn()
+                    //{
+                    //    ValueType = typeof(DataTable),
+                    //    DataSource = _dtUser,
+                    //    DisplayMember = "ITEM_NM",
+                    //    ValueMember = "ITEM_CD",
+                    //    HeaderText = "담당자",
+                    //    DataPropertyName = "USER_ID",
+                    //    Name = "USER_ID",
+                    //    Width = 160
+                    //};
+                    //int index = gd_schedule.Columns["USER_ID"].DisplayIndex;
+                    //gd_schedule.Columns.Remove(gd_schedule.Columns["USER_ID"]);
+                    //gd_schedule.Columns.AddRange(cbo);
+                    //cbo.DisplayIndex = index;
 
-                    DataGridViewButtonColumn btn = new DataGridViewButtonColumn()
+                    DataGridViewButtonColumn btn1 = new DataGridViewButtonColumn()
                     {
-                        HeaderText = "관리",
-                        Name = "SAVE",
-                        Text = "담당자 변경",
+                        HeaderText = "",
+                        Name = "VIEW",
+                        Text = "문서보기",
                         UseColumnTextForButtonValue = true
                     };
-                    gd_schedule.Columns.AddRange(btn);
+                    gd_schedule.Columns.AddRange(btn1);
+
+                    DataGridViewButtonColumn btn2 = new DataGridViewButtonColumn()
+                    {
+                        HeaderText = "",
+                        Name = "SAVE",
+                        Text = "일정수정",
+                        UseColumnTextForButtonValue = true
+                    };
+                    gd_schedule.Columns.AddRange(btn2);
 
                     btnScheduleAdd.Enabled = true;
                     #endregion
@@ -269,21 +340,22 @@ namespace MYC.UI.Report
                     gd_Document.Columns["USER_NM"].ReadOnly = true;
                     gd_Document.Columns["CRT_TM"].ReadOnly = true;
 
-                    DataGridViewButtonColumn btn2 = new DataGridViewButtonColumn()
+                    DataGridViewButtonColumn btn3 = new DataGridViewButtonColumn()
                     {
                         HeaderText = "관리",
                         Name = "CREATE",
                         Text = "문서등록",
                         UseColumnTextForButtonValue = true
                     };
-                    gd_Document.Columns.AddRange(btn2);
+                    gd_Document.Columns.AddRange(btn3);
 
                     btnDocumentNew.Enabled = true;
                     #endregion
 
                     #region 메모
-                    txtMemo.Text = gd_List.SelectedRows[0].Cells["BSN_DESC"].Value.ToString();
-                    btnSave.Enabled = true;
+                    txtMemo.Text = gd_List.GetSelectString("BSN_DESC");
+                    btnBool = true;
+                    BtnEnableControl(null, null);
                     #endregion
                 }
                 catch (Exception ex)
@@ -300,29 +372,47 @@ namespace MYC.UI.Report
             {
                 if ("SAVE".Equals(view.Columns[e.ColumnIndex].Name))
                 {
-                    ClearSearchData();
-                    SetSearchData("DOC_ID", gd_schedule.Rows[e.RowIndex].Cells["SCH_ID"].Value);
-                    SetSearchData("ACCEPT_TM", gd_schedule.Rows[e.RowIndex].Cells["SCH_TM"].Value);
-                    SetSearchData("USER_ID_LST", gd_schedule.Rows[e.RowIndex].Cells["USER_ID"].Value);
-                    SetSearchData("CRT_USER_ID", DTOFactory.UserId);
-                    SetServiceId("SetScheduleManager");
+                    DateTime date = DateTime.Parse(gd_schedule.GetSelectString("SCH_TM").ToString());
+                    SF = true;
 
-                    DTOFactory.Action();
-
-                    try
+                    var frm = new BusinessSchedulePopup()
                     {
-                        DTOFactory.Transaction(new ReportDTO());
-
+                        DOC_NM = gd_List.GetSelectString("SUBJECT"),
+                        DOC_ID = gd_List.GetSelectString("DOC_ID"),
+                        USER_ID = gd_schedule.GetSelectString("USER_ID"),
+                        SCH_ID = gd_schedule.GetSelectString("SCH_ID"),
+                        SCH_DESC = gd_schedule.GetSelectString("SCH_DESC"),
+                        DATE = date,
+                        ScheduleFix = SF
+                    };
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
                         GetItemInfo(gd_List, null);
+                        SF = false;
                     }
-                    catch (Exception ex)
-                    {
-                        ViewMessage.Error(ex.Message);
-                    }
+                    //ClearSearchData();
+                    //SetSearchData("DOC_ID", gd_schedule.Rows[e.RowIndex].Cells["SCH_ID"].Value);
+                    //SetSearchData("ACCEPT_TM", gd_schedule.Rows[e.RowIndex].Cells["SCH_TM"].Value);
+                    //SetSearchData("USER_ID_LST", gd_schedule.Rows[e.RowIndex].Cells["USER_ID"].Value);
+                    //SetSearchData("CRT_USER_ID", DTOFactory.UserId);
+                    //SetServiceId("SetScheduleManager");
 
-                    DTOFactory.Complete();
+                    //DTOFactory.Action();
+
+                    //try
+                    //{
+                    //    DTOFactory.Transaction(new ReportDTO());
+
+                    //    GetItemInfo(gd_List, null);
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    ViewMessage.Error(ex.Message);
+                    //}
+
+                    //DTOFactory.Complete();
                 }
-                else
+                else if("VIEW".Equals(view.Columns[e.ColumnIndex].Name))
                 {
                     GetDocumentList(e.RowIndex);
                 }
@@ -331,7 +421,7 @@ namespace MYC.UI.Report
 
         private void AddNewDocument(object sender, EventArgs e)
         {
-            string link_code = gd_List.SelectedRows[0].Cells["LINK_CD"].Value.ToString();
+            string link_code = gd_List.GetSelectString("LINK_CD");
             OpenFileDialog frm = new OpenFileDialog();
 
             if (frm.ShowDialog() == DialogResult.OK)
@@ -342,7 +432,7 @@ namespace MYC.UI.Report
 
                 SetSearchData("LINK_CODE", link_code);
                 SetSearchData("GRP_NO", gd_schedule.SelectedCells.Count > 0 ? gd_schedule.Rows[gd_schedule.SelectedCells[0].RowIndex].Cells["SCH_DESC"].Value : "사업 접수");
-                SetSearchData("CRT_USER_ID", DTOFactory.UserId);                
+                SetSearchData("CRT_USER_ID", DTOFactory.UserId);
                 SetServiceId("InsertBusinessDocument");
 
                 try
@@ -407,8 +497,8 @@ namespace MYC.UI.Report
         {
             BusinessSchedulePopup frm = new BusinessSchedulePopup()
             {
-                DOC_NM = gd_List.SelectedRows[0].Cells["SUBJECT"].Value.ToString(),
-                DOC_ID = gd_List.SelectedRows[0].Cells["DOC_ID"].Value.ToString()
+                DOC_NM = gd_List.GetSelectString("SUBJECT"),
+                DOC_ID = gd_List.GetSelectString("DOC_ID")
             };
 
             if (frm.ShowDialog() == DialogResult.OK)
@@ -419,22 +509,40 @@ namespace MYC.UI.Report
 
         private void MemoSave(object sender, EventArgs e)
         {
-            ClearSearchData();
-            SetSearchData("DOC_ID", gd_List.SelectedRows[0].Cells["DOC_ID"].Value);
-            SetSearchData("DESC", txtMemo.Text);
-            SetSearchData("CRT_USER_ID", DTOFactory.UserId);
-            SetServiceId("SetBusinessItemMemo");
-
-            try
+            if (tabControl.SelectedIndex == 0)
             {
-                DTOFactory.Transaction(new ReportDTO());
-                DataSet ds_return = DTOFactory.GetDataSet();
+                ClearSearchData();
+                SetSearchData("DESC", txtMyMemo.Text);
+                SetSearchData("USER_ID_LST", DTOFactory.UserId);
+                SetServiceId("SetPgmMemo");
 
-                _dtList.Rows[gd_List.SelectedRows[0].Index]["BSN_DESC"] = txtMemo.Text;
+                try
+                {
+                    DTOFactory.Transaction(new ReportDTO());
+                }
+                catch (Exception ex)
+                {
+                    ViewMessage.Error(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else if (tabControl.SelectedIndex == 1)
             {
-                ViewMessage.Error(ex.Message);
+                ClearSearchData();
+                SetSearchData("DOC_ID", gd_List.GetSelectString("DOC_ID"));
+                SetSearchData("DESC", txtMemo.Text);
+                SetSearchData("CRT_USER_ID", DTOFactory.UserId);
+                SetServiceId("SetBusinessItemMemo");
+
+                try
+                {
+                    DTOFactory.Transaction(new ReportDTO());
+
+                    _dtList.Rows[gd_List.SelectedCells[0].RowIndex]["BSN_DESC"] = txtMemo.Text;
+                }
+                catch (Exception ex)
+                {
+                    ViewMessage.Error(ex.Message);
+                }
             }
         }
 
@@ -478,9 +586,23 @@ namespace MYC.UI.Report
             }
         }
 
-        private void DocHelp(object sender, EventArgs e)
+        private void BtnEnableControl(object sender, EventArgs e)
         {
-            ViewMessage.Info("사업 일정의 일자 정보 클릭시 Filter");
+            if (tabControl.SelectedIndex == 0)
+            {
+                btnSave.Enabled = true;
+            }
+            else if (tabControl.SelectedIndex == 1)
+            {
+                if (btnBool)
+                {
+                    btnSave.Enabled = true;
+                }
+                else
+                {
+                    btnSave.Enabled = false;
+                }
+            }
         }
     }
 }
