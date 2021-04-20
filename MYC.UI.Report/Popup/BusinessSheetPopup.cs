@@ -12,6 +12,16 @@ namespace MYC.UI.Report
     {
         protected DataTable _dtFile = new DataTable();
 
+        public string DOC_ID { get; set; }
+        public string SUBJECT { get; set; }
+        public string COMP_CD { get; set; }
+        public string COMP_USER_ID { get; set; }
+        public DateTime ACCEPT_DT{get; set;}
+        public string USER_ID { get; set; }
+        public string COST { get; set; }
+        public string PROJECT_ID{ get; set; }
+        public bool BF { get; set; }
+
         public BusinessSheetPopup()
         {
             InitializeComponent();
@@ -30,6 +40,8 @@ namespace MYC.UI.Report
 
         private void InitControl()
         {
+            DTOFactory.Action();
+
             cboComp.Params.Clear();
             cboComp.Params.Add("strCompType", "G");
             cboComp.BindDataSet();
@@ -48,9 +60,44 @@ namespace MYC.UI.Report
             cboProject.Params.Add("strStatus", "");
             cboProject.BindDataSet();
 
-            lstFile.DataSource = _dtFile;
             dtCreateTime.Value = DateTime.Now;
             dtAcceptTime.Value = DateTime.Now;
+            lstFile.DataSource = _dtFile;
+
+            if(BF)
+            {
+                txtSubject.Text = SUBJECT;
+                cboComp.SetItemChecked(COMP_CD);
+                cboCompUser.SetItemChecked(COMP_USER_ID);
+                dtAcceptTime.Value = ACCEPT_DT;
+                cboUser.SetItemChecked(USER_ID);
+                cboProject.SetItemChecked(PROJECT_ID);
+                txtCost.Text = COST;
+
+                label6.Enabled = false;
+                lstFile.Enabled = false;
+                btnFileAdd.Enabled = false;
+                btnFileView.Enabled = false;
+                btnFileDel.Enabled = false;
+            }
+
+            DTOFactory.Complete();
+        }
+
+        private void cboComp_TextChanged(object sender, EventArgs e)
+        {
+            if (!"".Equals(cboComp.ValueList))
+            {
+                cboCompUser.Params.Clear();
+                cboCompUser.Params.Add("strCompCode", cboComp.ValueList);
+                cboCompUser.BindDataSet();
+            }
+            else
+            {
+                cboCompUser.Params.Clear();
+                cboCompUser.Params.Add("strCompType", "G");
+                cboCompUser.BindDataSet();
+            }
         }
 
         private void InitDataTable()
@@ -88,54 +135,81 @@ namespace MYC.UI.Report
 
         private void InsertData(object sender, EventArgs e)
         {
-            ClearSearchData();
-            SetSearchData("SUBJECT", txtSubject.Text);
-            SetSearchData("CST_COMP_CD", cboComp.ValueList);
-            SetSearchData("CST_USER_ID", cboCompUser.ValueList);
-            SetSearchData("USER_ID_LST", cboUser.ValueList);
-            SetSearchData("STATUS", "S");
-            SetSearchData("PRO_ID", cboProject.ValueList);
-            SetSearchData("CREATE_TM", dtCreateTime.Value.ToString("yyyy-MM-dd") + " 00:00:00");
-            SetSearchData("ACCEPT_TM", dtAcceptTime.Value.ToString("yyyy-MM-dd") + " 18:00:00");
-            SetSearchData("COST", ("".Equals(txtCost.Text) ? "0" : txtCost.Text).Replace(",", ""));
-            SetSearchData("GRP_NO", "사업 접수");
-            SetSearchData("CRT_USER_ID", DTOFactory.UserId);
-            SetServiceId("InsertBusinessList");
-            
-            DTOFactory.Transaction(new ReportDTO());
-
-            try
+            if (!BF)
             {
-                DataTable dt = DTOFactory.GetDataTable();
+                ClearSearchData();
+                SetSearchData("SUBJECT", txtSubject.Text);
+                SetSearchData("CST_COMP_CD", cboComp.ValueList);
+                SetSearchData("CST_USER_ID", cboCompUser.ValueList);
+                SetSearchData("USER_ID_LST", cboUser.ValueList);
+                SetSearchData("STATUS", "S");
+                SetSearchData("PRO_ID", cboProject.ValueList);
+                SetSearchData("CREATE_TM", dtCreateTime.Value.ToString("yyyy-MM-dd") + " 00:00:00");
+                SetSearchData("ACCEPT_TM", dtAcceptTime.Value.ToString("yyyy-MM-dd") + " 18:00:00");
+                SetSearchData("COST", ("".Equals(txtCost.Text) ? "0" : txtCost.Text).Replace(",", ""));
+                SetSearchData("GRP_NO", "사업 접수");
+                SetSearchData("CRT_USER_ID", DTOFactory.UserId);
+                SetServiceId("InsertBusinessList");
 
-                string LINK_CODE = dt.Rows[0]["LINK_CODE"].ToString();
+                DTOFactory.Transaction(new ReportDTO());
 
-                if ("".Equals(LINK_CODE))
+                try
                 {
-                    ViewMessage.Info("이미 등록된 사업 정보 입니다.");
-                }
-                else
-                {
-                    SetSearchData("LINK_CODE", LINK_CODE);
+                    DataTable dt = DTOFactory.GetDataTable();
 
-                    foreach (DataRow row in _dtFile.Rows)
+                    string LINK_CODE = dt.Rows[0]["LINK_CODE"].ToString();
+
+                    if ("".Equals(LINK_CODE))
                     {
-                        new FileSender(LINK_CODE, row["DIR"].ToString());
+                        ViewMessage.Info("이미 등록된 사업 정보 입니다.");
+                    }
+                    else
+                    {
+                        SetSearchData("LINK_CODE", LINK_CODE);
+
+                        foreach (DataRow row in _dtFile.Rows)
+                        {
+                            new FileSender(LINK_CODE, row["DIR"].ToString());
+                        }
+
+                        SetServiceId("InsertBusinessDocument");
+
+                        DTOFactory.Transaction(new ReportDTO());
+
+                        ViewMessage.Info("사업 등록을 완료 하였습니다.");
+
+                        Close();
                     }
 
-                    SetServiceId("InsertBusinessDocument");
-
-                    DTOFactory.Transaction(new ReportDTO());
-
-                    ViewMessage.Info("사업 등록을 완료 하였습니다.");
-
-                    Close();
                 }
-
+                catch (Exception ex)
+                {
+                    ViewMessage.Error(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                ViewMessage.Error(ex.Message);
+                ClearSearchData();
+                SetSearchData("DOC_ID", DOC_ID);
+                SetSearchData("SUBJECT", txtSubject.Text);
+                SetSearchData("CST_COMP_CD", cboComp.ValueList);
+                SetSearchData("CST_USER_ID", cboCompUser.ValueList);
+                SetSearchData("USER_ID_LST", cboUser.ValueList);
+                SetSearchData("STATUS", "S");
+                SetSearchData("PRO_ID", cboProject.ValueList);
+                SetSearchData("CREATE_TM", dtCreateTime.Value.ToString("yyyy-MM-dd") + " 00:00:00");
+                SetSearchData("ACCEPT_TM", dtAcceptTime.Value.ToString("yyyy-MM-dd") + " 18:00:00");
+                SetSearchData("COST", ("".Equals(txtCost.Text) ? "0" : txtCost.Text).Replace(",", ""));
+                SetSearchData("GRP_NO", "사업 접수");
+                SetSearchData("CRT_USER_ID", DTOFactory.UserId);
+                SetServiceId("UpdateBusinessList");
+
+                DTOFactory.Transaction(new ReportDTO());
+
+                ViewMessage.Info("사업 수정을 완료 하였습니다.");
+
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
 

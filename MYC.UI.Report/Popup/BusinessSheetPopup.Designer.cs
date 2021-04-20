@@ -52,6 +52,7 @@
             this.dtCreateTime = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCost = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this._dtSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -244,6 +245,7 @@
             this.cboComp.TabIndex = 1;
             this.cboComp.Text = "[SELECT]";
             this.cboComp.ValueMember = "ITEM_CD";
+            this.cboComp.TextChanged += new System.EventHandler(this.cboComp_TextChanged);
             // 
             // cboUser
             // 
@@ -298,7 +300,7 @@
             // 
             // dtCreateTime
             // 
-            this.dtCreateTime.Location = new System.Drawing.Point(144, 76);
+            this.dtCreateTime.Location = new System.Drawing.Point(143, 76);
             this.dtCreateTime.Name = "dtCreateTime";
             this.dtCreateTime.Size = new System.Drawing.Size(148, 21);
             this.dtCreateTime.TabIndex = 2;
@@ -356,14 +358,11 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "BusinessSheetPopup";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "사업 추가";
             this.Load += new System.EventHandler(this.BusinessSheetPopup_Load);
+            ((System.ComponentModel.ISupportInitialize)(this._dtSearch)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

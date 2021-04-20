@@ -12,7 +12,11 @@ namespace MYC.UI.Report
 
         public string DOC_ID { get; set; }
         public string DOC_NM { get; set; }
-
+        public string USER_ID { get; set; }
+        public string SCH_ID { get; set; }
+        public string SCH_DESC { get; set; }
+        public DateTime DATE { get; set; }
+        public bool ScheduleFix { get; set; }
         public BusinessSchedulePopup()
         {
             InitializeComponent();
@@ -38,33 +42,71 @@ namespace MYC.UI.Report
             cboPlan.Params.Add("strItem", "BUSINESS_CODE");
             cboPlan.BindDataSet();
 
-            dtCreateTime.Value = DateTime.Now;
-
             txtSubject.Text = DOC_NM;
+
+            if (ScheduleFix)
+            {
+                cboUser.SetItemChecked(USER_ID);
+                cboPlan.Text = SCH_DESC;
+                dtCreateTime.Value = DATE;
+                cboPlan.Enabled = false;
+            }
+            else
+            {
+                dtCreateTime.Value = DateTime.Now;
+            }
         }
 
         private void InsertData(object sender, EventArgs e)
         {
-            if ("".Equals(cboUser.ValueList) || "".Equals(cboPlan.ValueList))
+            if (ScheduleFix)
             {
-                ViewMessage.Info("담당자와 내용을 선택해 주시기 바랍니다.");
+                if ("".Equals(cboUser.ValueList))
+                {
+                    ViewMessage.Info("담당자와 내용을 선택해 주시기 바랍니다.");
+                }
+                else
+                {
+                    ClearSearchData();
+                    SetSearchData("DOC_ID", DOC_ID);
+                    SetSearchData("ACCEPT_TM", DATE.ToString("yyyy-MM-dd HH:mm:ss"));
+                    SetSearchData("PROC_TM", dtCreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                    SetSearchData("USER_ID_LST", cboUser.ValueList);
+                    SetSearchData("CRT_USER_ID", DTOFactory.UserId);
+                    SetServiceId("SetScheduleManager");
+
+                    DTOFactory.Transaction(new ReportDTO());
+
+                    ViewMessage.Info("일정 수정을 완료 하였습니다.");
+
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
             else
             {
-                ClearSearchData();
-                SetSearchData("DOC_ID", DOC_ID);
-                SetSearchData("ACCEPT_TM", dtCreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss"));                
-                SetSearchData("USER_ID_LST", cboUser.ValueList);                
-                SetSearchData("DESC", cboPlan.ValueList);               
-                SetSearchData("CRT_USER_ID", DTOFactory.UserId);
-                SetServiceId("SetScheduleManager");
+                if ("".Equals(cboUser.ValueList) || "".Equals(cboPlan.ValueList))
+                {
+                    ViewMessage.Info("담당자와 내용을 선택해 주시기 바랍니다.");
+                }
+                else
+                {
 
-                DTOFactory.Transaction(new ReportDTO());
+                    ClearSearchData();
+                    SetSearchData("DOC_ID", DOC_ID);
+                    SetSearchData("ACCEPT_TM", dtCreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                    SetSearchData("USER_ID_LST", cboUser.ValueList);
+                    SetSearchData("DESC", cboPlan.ValueList);
+                    SetSearchData("CRT_USER_ID", DTOFactory.UserId);
+                    SetServiceId("SetScheduleManager");
 
-                ViewMessage.Info("일정 등록을 완료 하였습니다.");
+                    DTOFactory.Transaction(new ReportDTO());
 
-                DialogResult = DialogResult.OK;
-                Close();
+                    ViewMessage.Info("일정 등록을 완료 하였습니다.");
+
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
         }
     }
